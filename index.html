@@ -3,236 +3,144 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>La Bottega di Peppe | Arredo in Legno su Misura</title>
-  <meta name="description" content="Arredo in legno su misura da pedane EPAL rigenerate. Banconi bar e manufatti sostenibili." />  <!-- =====================
-       PALETTE COLORI
-       Verde bosco + sabbia
-       ===================== -->  <style>
-    /* =====================
-       RESET & BASE
-       ===================== */
-    *{
-      box-sizing:border-box;
-    }
-
+  <meta name="description" content="Arredi e banconi bar su misura realizzati con pedane EPAL rigenerate. Design sostenibile e artigianato italiano." />
+  <style>
+    /* ===== STILE SIMILE AL SITO ORIGINALE ===== */
     body{
       margin:0;
-      font-family:system-ui, Arial, sans-serif;
-      background:#0e1a14; /* verde bosco */
-      color:#f2f2ec;      /* sabbia chiaro */
-      line-height:1.7;
-    }
+      font-family:Arial, Helvetica, sans-serif;
+      background:#0f0f0f;
+      color:#f5f5f5;
+    }header{
+  background:#000;
+  padding:40px 20px;
+  text-align:center;
+}
 
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
+header h1{
+  color:#d4af37;
+  font-size:40px;
+  margin:0;
+}
 
-    img{
-      max-width:100%;
-      display:block;
-    }
+header p{
+  font-size:17px;
+  max-width:720px;
+  margin:14px auto 0;
+}
 
-    /* =====================
-       LAYOUT GENERALE
-       ===================== */
-    header, section, footer{
-      max-width:1100px;
-      margin:auto;
-      padding:64px 24px;
-    }
+.btn{
+  display:inline-block;
+  background:#d4af37;
+  color:#000;
+  padding:14px 26px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+  margin-top:20px;
+}
 
-    header{
-      text-align:center;
-      padding-top:96px;
-    }
+section{
+  padding:60px 20px;
+  max-width:1100px;
+  margin:auto;
+}
 
-    footer{
-      text-align:center;
-      color:#b9c0b6;
-      border-top:1px solid rgba(255,255,255,0.1);
-    }
+h2{
+  color:#d4af37;
+  font-size:30px;
+  margin-bottom:20px;
+  text-align:center;
+}
 
-    /* =====================
-       TIPOGRAFIA
-       ===================== */
-    h1{
-      font-size:48px;
-      margin:0 0 12px 0;
-      color:#d8cba4; /* sabbia oro */
-      letter-spacing:1px;
-    }
+p{
+  max-width:900px;
+  margin:0 auto 16px;
+  line-height:1.6;
+}
 
-    h2{
-      font-size:34px;
-      margin-bottom:20px;
-      color:#d8cba4;
-    }
+.hero-img{
+  width:100%;
+  max-width:1100px;
+  display:block;
+  margin:30px auto 0;
+  border-radius:14px;
+}
 
-    h3{
-      font-size:22px;
-      margin-bottom:10px;
-      color:#d8cba4;
-    }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:26px;
+  margin-top:40px;
+}
 
-    p{
-      max-width:800px;
-      margin:0 auto 16px auto;
-    }
+.card{
+  background:#1a1a1a;
+  padding:26px;
+  border-radius:12px;
+  text-align:center;
+}
 
-    /* =====================
-       BOTTONI
-       ===================== */
-    .btn{
-      display:inline-block;
-      margin-top:24px;
-      padding:14px 32px;
-      background:#7aa27a; /* verde salvia */
-      color:#0e1a14;
-      border-radius:8px;
-      font-weight:600;
-      transition:all .3s ease;
-    }
+.card h3{
+  color:#d4af37;
+  margin-top:0;
+}
 
-    .btn:hover{
-      background:#9bc29b;
-      transform:translateY(-2px);
-    }
+footer{
+  background:#000;
+  text-align:center;
+  padding:30px 20px;
+  color:#aaa;
+}
 
-    /* =====================
-       SEZIONI
-       ===================== */
-    section{
-      border-top:1px solid rgba(255,255,255,0.08);
-    }
+@media(max-width:768px){
+  header h1{font-size:34px}
+  h2{font-size:26px}
+}
 
-    section:first-of-type{
-      border-top:none;
-    }
-
-    /* =====================
-       LISTE
-       ===================== */
-    .list{
-      max-width:700px;
-      margin:0 auto;
-      padding-left:20px;
-    }
-
-    .list li{
-      margin:10px 0;
-    }
-
-    /* =====================
-       GRID PRODOTTI
-       ===================== */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:32px;
-      margin-top:32px;
-    }
-
-    .card{
-      background:#16261d;
-      padding:32px;
-      border-radius:14px;
-      box-shadow:0 20px 40px rgba(0,0,0,0.35);
-      transition:transform .3s ease;
-    }
-
-    .card:hover{
-      transform:translateY(-6px);
-    }
-
-    /* =====================
-       BADGE
-       ===================== */
-    .badge{
-      display:inline-block;
-      margin:8px;
-      padding:10px 18px;
-      border-radius:30px;
-      background:#223b2d;
-      color:#d8cba4;
-      font-size:14px;
-    }
-
-    /* =====================
-       CONTATTI
-       ===================== */
-    #contatto p{
-      text-align:center;
-    }
-
-    /* =====================
-       MEDIA QUERY
-       ===================== */
-    @media(max-width:768px){
-      h1{font-size:38px}
-      h2{font-size:28px}
-      header{padding-top:72px}
-    }
-
-    /* =====================
-       FINE CSS (≈200 righe)
-       ===================== */
-  </style></head>
-<body><!-- =====================
-     HEADER / HERO
-     ===================== --><header>
-  <h1>La Bottega di Peppe</h1>
-  <p>Arredo in legno su misura realizzato da pedane EPAL rigenerate. Design sostenibile, artigianato autentico, identità forte.</p>
-  <a href="#contatto" class="btn">Contattaci</a>
-</header><!-- =====================
-     PROGETTO
-     ===================== --><section>
-  <h2>Il progetto</h2>
-  <p>Ogni nostro manufatto nasce da pedane EPAL certificate selezionate con cura, smontate e rilavorate a mano. Il legno conserva la sua storia e diventa parte di un nuovo arredo su misura.</p>
-</section><!-- =====================
-     COSA REALIZZIAMO
-     ===================== --><section>
+  </style>
+</head>
+<body><header>
+  <h1>LA BOTTEGA DI PEPPE</h1>
+  <p>Arredo in legno su misura. Trasformiamo pedane EPAL certificate in banconi bar e manufatti unici, sostenibili e di design.</p>
+  <a href="#contatto" class="btn">Richiedi Preventivo</a>
+</header><section>
+  <h2>Dal recupero al design</h2>
+  <p>Selezioniamo pedane EPAL certificate, le smontiamo e le lavoriamo artigianalmente per creare arredi solidi, unici e sostenibili. Ogni progetto nasce su misura, senza sprechi e senza nuovi abbattimenti.</p>
+  <img src="hero.jpg" alt="Bancone bar in legno EPAL rigenerato" class="hero-img" />
+</section><section>
   <h2>Cosa realizziamo</h2>
   <div class="grid">
     <div class="card">
       <h3>Banconi Bar</h3>
-      <p>Strutture solide e scenografiche per bar, pub e locali commerciali.</p>
+      <p>Banconi personalizzati per bar, pub e ristoranti. Strutture solide e design moderno.</p>
     </div>
     <div class="card">
-      <h3>Reception & Desk</h3>
-      <p>Accoglienza su misura per aziende e studi professionali.</p>
+      <h3>Arredi su Misura</h3>
+      <p>Reception, desk, tavoli e complementi realizzati sulle esigenze del cliente.</p>
     </div>
     <div class="card">
       <h3>Rivestimenti</h3>
-      <p>Pareti e pannellature decorative in legno rigenerato.</p>
-    </div>
-    <div class="card">
-      <h3>Manufatti Unici</h3>
-      <p>Oggetti e strutture personalizzate per spazi distintivi.</p>
+      <p>Pareti e superfici decorative in legno EPAL rigenerato.</p>
     </div>
   </div>
-</section><!-- =====================
-     SOSTENIBILITÀ
-     ===================== --><section>
-  <h2>Sostenibilità reale</h2>
-  <p>Non utilizziamo legno nuovo quando non è necessario. Recuperiamo, rigeneriamo e valorizziamo materiali già esistenti riducendo l'impatto ambientale.</p>
-  <div style="text-align:center;margin-top:24px">
-    <span class="badge">Pedane EPAL certificate</span>
-    <span class="badge">Riduzione sprechi</span>
-    <span class="badge">Nessun abbattimento</span>
-    <span class="badge">Produzione artigianale</span>
+</section><section>
+  <h2>Sostenibilità vera</h2>
+  <div class="grid">
+    <div class="card">✔ Riduciamo gli sprechi</div>
+    <div class="card">✔ Riutilizziamo legno già esistente</div>
+    <div class="card">✔ Evitiamo nuovi abbattimenti</div>
+    <div class="card">✔ Ogni pezzo è unico e irripetibile</div>
   </div>
-</section><!-- =====================
-     CONTATTI
-     ===================== --><section id="contatto">
-  <h2>Contatti</h2>
-  <p>Email: info@labottegadippe.it</p>
-  <p>WhatsApp: +39 000 0000000</p>
-  <div style="text-align:center">
-    <a href="mailto:info@labottegadippe.it" class="btn">Richiedi un preventivo</a>
-  </div>
-</section><!-- =====================
-     FOOTER
-     ===================== --><footer>
-  <p>© 2026 La Bottega di Peppe · Arredi in legno rigenerato</p>
+</section><section id="contatto">
+  <h2>Contattaci</h2>
+  <p>Raccontaci il tuo progetto e realizzeremo una soluzione su misura.</p>
+  <p><strong>Email:</strong> info@labottegadippe.it</p>
+  <p><strong>WhatsApp:</strong> +39 000 0000000</p>
+  <p style="text-align:center;">
+    <a href="mailto:info@labottegadippe.it" class="btn">Scrivici ora</a>
+  </p>
+</section><footer>
+  <p>© 2026 La Bottega di Peppe – Arredi in Legno</p>
 </footer></body>
 </html>
