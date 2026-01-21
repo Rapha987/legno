@@ -1,147 +1,700 @@
-<!DOCTYPE html><html lang="it">
+<!DOCTYPE html>
+<html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>La Bottega di Peppe | Arredo in Legno su Misura</title>
   <meta name="description" content="Arredi e banconi bar su misura realizzati con pedane EPAL rigenerate. Design sostenibile e artigianato italiano." />
+  <meta name="theme-color" content="#0b0b0b" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="La Bottega di Peppe | Arredo in Legno su Misura" />
+  <meta property="og:description" content="Banconi bar, arredi e rivestimenti in legno EPAL rigenerato. Progetti su misura, sostenibili e artigianali." />
+  <meta property="og:type" content="website" />
+
   <style>
-    /* ===== STILE SIMILE AL SITO ORIGINALE ===== */
+    :root{
+      --bg:#0b0b0b;
+      --bg2:#0f0f0f;
+      --panel:#141414;
+      --panel2:#1b1b1b;
+      --text:#f5f5f5;
+      --muted:#bdbdbd;
+      --gold:#d4af37;
+      --gold2:#b8932f;
+      --stroke:rgba(255,255,255,.08);
+      --shadow: 0 18px 45px rgba(0,0,0,.45);
+      --radius:16px;
+      --radius2:22px;
+      --max:1180px;
+      --ease:cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family:Arial, Helvetica, sans-serif;
-      background:#0f0f0f;
-      color:#f5f5f5;
-    }header{
-  background:#000;
-  padding:40px 20px;
-  text-align:center;
-}
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(212,175,55,.18), transparent 60%),
+        radial-gradient(900px 500px at 80% 10%, rgba(212,175,55,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2) 55%, #0a0a0a);
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
 
-header h1{
-  color:#d4af37;
-  font-size:40px;
-  margin:0;
-}
+    a{color:inherit}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--max); margin:0 auto; padding:0 22px}
 
-header p{
-  font-size:17px;
-  max-width:720px;
-  margin:14px auto 0;
-}
+    /* Subtle noise overlay */
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay;
+      opacity:.35;
+    }
 
-.btn{
-  display:inline-block;
-  background:#d4af37;
-  color:#000;
-  padding:14px 26px;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:bold;
-  margin-top:20px;
-}
+    /* ===== NAV ===== */
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,.55);
+      border-bottom:1px solid var(--stroke);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:800;
+      font-size:14px;
+    }
+    .logo{
+      width:36px; height:36px; border-radius:12px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(212,175,55,.75), transparent 55%),
+        linear-gradient(145deg, rgba(212,175,55,.22), rgba(0,0,0,.2));
+      border:1px solid rgba(212,175,55,.35);
+      box-shadow: 0 10px 25px rgba(212,175,55,.10);
+      position:relative;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:7px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.10);
+    }
 
-section{
-  padding:60px 20px;
-  max-width:1100px;
-  margin:auto;
-}
+    .menu{
+      display:flex; align-items:center; gap:18px;
+    }
+    .menu a{
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:600;
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:10px;
+      transition: all .25s var(--ease);
+    }
+    .menu a:hover{
+      color:var(--text);
+      background: rgba(255,255,255,.06);
+    }
 
-h2{
-  color:#d4af37;
-  font-size:30px;
-  margin-bottom:20px;
-  text-align:center;
-}
+    .nav-cta{
+      display:flex; align-items:center; gap:10px;
+    }
 
-p{
-  max-width:900px;
-  margin:0 auto 16px;
-  line-height:1.6;
-}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      background: linear-gradient(180deg, var(--gold), var(--gold2));
+      color:#0b0b0b;
+      padding:12px 16px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:900;
+      letter-spacing:.02em;
+      border:1px solid rgba(0,0,0,.25);
+      box-shadow: 0 14px 35px rgba(212,175,55,.16);
+      transition: transform .2s var(--ease), filter .2s var(--ease);
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+    .btn:active{ transform: translateY(0); }
 
-.hero-img{
-  width:100%;
-  max-width:1100px;
-  display:block;
-  margin:30px auto 0;
-  border-radius:14px;
-}
+    .btn-ghost{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:800;
+      color:var(--text);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      transition: all .25s var(--ease);
+      white-space:nowrap;
+    }
+    .btn-ghost:hover{
+      background: rgba(255,255,255,.07);
+      border-color: rgba(212,175,55,.25);
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:26px;
-  margin-top:40px;
-}
+    .hamburger{
+      display:none;
+      width:44px; height:44px;
+      border-radius:12px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      cursor:pointer;
+    }
+    .hamburger span{
+      display:block;
+      width:18px; height:2px;
+      background: var(--text);
+      margin: 6px auto;
+      border-radius:999px;
+      opacity:.9;
+    }
 
-.card{
-  background:#1a1a1a;
-  padding:26px;
-  border-radius:12px;
-  text-align:center;
-}
+    /* ===== HERO ===== */
+    header.hero{
+      padding:44px 0 10px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:26px;
+      align-items:center;
+    }
 
-.card h3{
-  color:#d4af37;
-  margin-top:0;
-}
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(212,175,55,.26);
+      background: rgba(212,175,55,.08);
+      color: rgba(255,255,255,.88);
+      font-weight:800;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      font-size:12px;
+      width:fit-content;
+    }
+    .badge i{
+      width:8px; height:8px;
+      border-radius:999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px rgba(212,175,55,.12);
+      display:inline-block;
+    }
 
-footer{
-  background:#000;
-  text-align:center;
-  padding:30px 20px;
-  color:#aaa;
-}
+    h1{
+      margin:14px 0 12px;
+      font-size: clamp(34px, 4.6vw, 56px);
+      line-height:1.06;
+      letter-spacing:-.02em;
+    }
+    .hero strong{
+      color: var(--gold);
+      font-weight:1000;
+    }
+    .lead{
+      color: rgba(245,245,245,.85);
+      font-size: 16.5px;
+      max-width: 58ch;
+      margin: 0 0 18px;
+    }
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
 
-@media(max-width:768px){
-  header h1{font-size:34px}
-  h2{font-size:26px}
-}
+    .kpis{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top:22px;
+    }
+    .kpi{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid var(--stroke);
+      border-radius:14px;
+      padding:14px 14px;
+      box-shadow: var(--shadow);
+    }
+    .kpi b{
+      display:block;
+      font-size:18px;
+      letter-spacing:.02em;
+      margin-bottom:2px;
+      color: rgba(255,255,255,.95);
+    }
+    .kpi span{
+      color: rgba(245,245,245,.70);
+      font-size:13px;
+    }
 
+    .hero-media{
+      position:relative;
+      border-radius: var(--radius2);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.15));
+      box-shadow: 0 24px 60px rgba(0,0,0,.55);
+      min-height: 420px;
+    }
+    .hero-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter: contrast(1.05) brightness(.95);
+      transform: scale(1.02);
+    }
+    .hero-overlay{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(700px 500px at 20% 30%, rgba(212,175,55,.18), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.55));
+      pointer-events:none;
+    }
+    .hero-caption{
+      position:absolute;
+      left:16px;
+      right:16px;
+      bottom:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(8px);
+      font-weight:800;
+      font-size:13px;
+      color: rgba(255,255,255,.9);
+    }
+    .chip svg{opacity:.9}
+
+    /* ===== SECTIONS ===== */
+    section{
+      padding:72px 0;
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+    .section-title{
+      text-align:center;
+      margin-bottom:28px;
+    }
+    .section-title h2{
+      margin:0 0 10px;
+      color: var(--gold);
+      font-size: clamp(24px, 3.2vw, 34px);
+      letter-spacing:-.01em;
+    }
+    .section-title p{
+      margin:0 auto;
+      max-width: 70ch;
+      color: rgba(245,245,245,.78);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:16px;
+      margin-top:28px;
+    }
+    .card{
+      grid-column: span 4;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding:22px;
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+      transition: transform .25s var(--ease), border-color .25s var(--ease);
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 180px at 20% 0%, rgba(212,175,55,.12), transparent 55%);
+      pointer-events:none;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(212,175,55,.22);
+    }
+    .card h3{
+      margin:0 0 8px;
+      color: rgba(255,255,255,.95);
+      letter-spacing:.01em;
+    }
+    .card p{
+      margin:0;
+      color: rgba(245,245,245,.74);
+      font-size:14.5px;
+    }
+    .icon{
+      width:44px; height:44px;
+      border-radius:14px;
+      display:grid; place-items:center;
+      background: rgba(212,175,55,.10);
+      border:1px solid rgba(212,175,55,.25);
+      margin-bottom:14px;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      align-items:stretch;
+      margin-top:28px;
+    }
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid var(--stroke);
+      border-radius: var(--radius2);
+      padding:22px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .panel:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 260px at 70% 0%, rgba(212,175,55,.12), transparent 55%);
+      pointer-events:none;
+    }
+    .panel h3{
+      margin:0 0 10px;
+      color: rgba(255,255,255,.95);
+    }
+    .list{
+      margin: 14px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .list li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 12px;
+      background: rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+    }
+    .check{
+      flex:0 0 auto;
+      width:22px; height:22px;
+      border-radius:999px;
+      background: rgba(212,175,55,.16);
+      border:1px solid rgba(212,175,55,.25);
+      display:grid; place-items:center;
+      margin-top:1px;
+    }
+
+    /* ===== GALLERY ===== */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+      margin-top:28px;
+    }
+    .gitem{
+      grid-column: span 6;
+      border-radius: var(--radius2);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      position:relative;
+      min-height: 280px;
+    }
+    .gitem.small{ grid-column: span 3; min-height: 220px; }
+    .gitem img{
+      width:100%; height:100%;
+      object-fit:cover;
+      filter: contrast(1.05) brightness(.95);
+      transform: scale(1.02);
+      transition: transform .6s var(--ease);
+    }
+    .gitem:hover img{ transform: scale(1.06); }
+    .gcap{
+      position:absolute;
+      left:14px; right:14px; bottom:12px;
+      padding:10px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,.92);
+      font-weight:800;
+      font-size:13px;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .quotes{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:16px;
+      margin-top:28px;
+    }
+    .quote{
+      grid-column: span 6;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid var(--stroke);
+      border-radius: var(--radius2);
+      padding:22px;
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .quote:before{
+      content:"“";
+      position:absolute;
+      top:-10px; left:14px;
+      font-size:92px;
+      color: rgba(212,175,55,.16);
+      font-weight:1000;
+      line-height:1;
+    }
+    .quote p{ margin:0 0 14px; color: rgba(245,245,245,.80); }
+    .quote b{ display:block; color: rgba(255,255,255,.92); }
+    .quote span{ color: rgba(245,245,245,.65); font-size:13px; }
+
+    /* ===== CONTACT ===== */
+    .contact{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      align-items:start;
+      margin-top:28px;
+    }
+    form{
+      display:grid;
+      gap:12px;
+    }
+    .field{
+      display:grid;
+      gap:6px;
+    }
+    label{
+      font-size:13px;
+      color: rgba(245,245,245,.75);
+      font-weight:700;
+    }
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.25);
+      color: rgba(255,255,255,.92);
+      outline:none;
+      transition: border-color .25s var(--ease), background .25s var(--ease);
+      font-size:14.5px;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(212,175,55,.30);
+      background: rgba(0,0,0,.35);
+    }
+    textarea{ min-height:120px; resize:vertical; }
+
+    .mini{
+      color: rgba(245,245,245,.70);
+      font-size:13.5px;
+      margin:0;
+    }
+
+    .contact-box .row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.25);
+      margin-top:12px;
+    }
+    .contact-box svg{opacity:.9}
+
+    /* ===== FOOTER ===== */
+    footer{
+      padding:34px 0;
+      border-top:1px solid rgba(255,255,255,.06);
+      color: rgba(245,245,245,.62);
+      font-size:13px;
+      text-align:center;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .hero-media{ min-height: 360px; }
+      .kpis{ grid-template-columns: 1fr; }
+      .card{ grid-column: span 6; }
+      .gitem{ grid-column: span 12; }
+      .gitem.small{ grid-column: span 6; }
+      .contact{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px){
+      .menu{ display:none; }
+      .hamburger{ display:inline-grid; place-items:center; }
+      .card{ grid-column: span 12; }
+      .gitem.small{ grid-column: span 12; }
+    }
+
+    /* ===== SIMPLE REVEAL ANIMATION ===== */
+    .reveal{ opacity:0; transform: translateY(10px); transition: all .6s var(--ease); }
+    .reveal.on{ opacity:1; transform:none; }
   </style>
 </head>
-<body><header>
-  <h1>LA BOTTEGA DI PEPPE</h1>
-  <p>Arredo in legno su misura. Trasformiamo pedane EPAL certificate in banconi bar e manufatti unici, sostenibili e di design.</p>
-  <a href="#contatto" class="btn">Richiedi Preventivo</a>
-</header><section>
-  <h2>Dal recupero al design</h2>
-  <p>Selezioniamo pedane EPAL certificate, le smontiamo e le lavoriamo artigianalmente per creare arredi solidi, unici e sostenibili. Ogni progetto nasce su misura, senza sprechi e senza nuovi abbattimenti.</p>
-  <img src="hero.jpg" alt="Bancone bar in legno EPAL rigenerato" class="hero-img" />
-  <img src="E1.png" alt="Bancone bar in legno EPAL rigenerato – dettaglio" class="hero-img" />
-</section><section>
-  <h2>Cosa realizziamo</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Banconi Bar</h3>
-      <p>Banconi personalizzati per bar, pub e ristoranti. Strutture solide e design moderno.</p>
+
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="La Bottega di Peppe">
+        <span class="logo" aria-hidden="true"></span>
+        <span>La Bottega di Peppe</span>
+      </a>
+
+      <nav class="menu" aria-label="Navigazione principale">
+        <a href="#processo">Processo</a>
+        <a href="#servizi">Cosa realizziamo</a>
+        <a href="#galleria">Galleria</a>
+        <a href="#sostenibilita">Sostenibilità</a>
+        <a href="#contatto">Contatti</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn-ghost" href="#galleria">Vedi lavori</a>
+        <a class="btn" href="#contatto">Richiedi preventivo</a>
+        <button class="hamburger" id="hamburger" aria-label="Apri menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
-    <div class="card">
-      <h3>Arredi su Misura</h3>
-      <p>Reception, desk, tavoli e complementi realizzati sulle esigenze del cliente.</p>
-    </div>
-    <div class="card">
-      <h3>Rivestimenti</h3>
-      <p>Pareti e superfici decorative in legno EPAL rigenerato.</p>
+
+    <!-- Mobile dropdown -->
+    <div id="mobileMenu" style="display:none; border-top:1px solid rgba(255,255,255,.06);">
+      <div class="container" style="padding:12px 22px 16px;">
+        <div style="display:grid; gap:10px;">
+          <a class="btn-ghost" href="#processo">Processo</a>
+          <a class="btn-ghost" href="#servizi">Cosa realizziamo</a>
+          <a class="btn-ghost" href="#galleria">Galleria</a>
+          <a class="btn-ghost" href="#sostenibilita">Sostenibilità</a>
+          <a class="btn" href="#contatto">Contatti</a>
+        </div>
+      </div>
     </div>
   </div>
-</section><section>
-  <h2>Sostenibilità vera</h2>
-  <div class="grid">
-    <div class="card">✔ Riduciamo gli sprechi</div>
-    <div class="card">✔ Riutilizziamo legno già esistente</div>
-    <div class="card">✔ Evitiamo nuovi abbattimenti</div>
-    <div class="card">✔ Ogni pezzo è unico e irripetibile</div>
-  </div>
-</section><section id="contatto">
-  <h2>Contattaci</h2>
-  <p>Raccontaci il tuo progetto e realizzeremo una soluzione su misura.</p>
-  <p><strong>Email:</strong> info@labottegadippe.it</p>
-  <p><strong>WhatsApp:</strong> +39 000 0000000</p>
-  <p style="text-align:center;">
-    <a href="mailto:info@labottegadippe.it" class="btn">Scrivici ora</a>
-  </p>
-</section><footer>
-  <p>© 2026 La Bottega di Peppe – Arredi in Legno</p>
-</footer></body>
-</html>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <div class="badge"><i></i> EPAL rigenerate • Su misura • Artigianale</div>
+        <h1>
+          Arredo in legno su misura, <strong>dal recupero al design</strong>.
+        </h1>
+        <p class="lead">
+          Selezioniamo pedane EPAL certificate, le smontiamo e le lavoriamo artigianalmente per creare
+          banconi bar, reception, tavoli e rivestimenti solidi, unici e sostenibili.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn" href="#contatto" aria-label="Richiedi preventivo">
+            Richiedi Preventivo
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M10 7h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="btn-ghost" href="#processo">Come lavoriamo</a>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi">
+            <b>100% su misura</b>
+            <span>progetto e finitura in base al tuo locale o ambiente</span>
+          </div>
+          <div class="kpi">
+            <b>Tempi chiari</b>
+            <span>preventivo rapido e timeline definita per la consegna</span>
+          </div>
+          <div class="kpi">
+            <b>Qualità reale</b>
+            <span>strutture solide, estetica premium, manutenzione semplice</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-media reveal" aria-label="Immagine hero">
+        <!-- Sostituisci con le tue immagini reali -->
+        <img src="hero.jpg" alt="Bancone bar in legno EPAL rigenerato" />
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-caption">
+          <span class="chip">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M20 7l-8 8-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Lavorazione artigianale
+          </span>
+          <span class="chip">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.9 5.5 21l2-7.8L2 9h7l3-7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+            Finiture premium
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROCESSO -->
+  <section id="processo">
+    <div class="container">
+      <div class="section-title reveal">
+        <h2>Il nostro processo</h2>
+        <p>Un flusso chiaro, con controlli qualità e focus su durata, estetica e sostenibilità.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card reveal">
+          <div class="icon" aria-hidden="true">
+            <svg width="20" height="20" viewB
