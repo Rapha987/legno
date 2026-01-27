@@ -1,422 +1,814 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>La Bottega di Peppe | Arredo in Legno su Misura</title>
-  <meta name="description" content="Banconi bar e arredi su misura in legno EPAL rigenerato. Design sostenibile, artigianato italiano." />
-  <meta name="theme-color" content="#0b0b0b" />
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Latency Human — v0.1</title>
+  <meta name="theme-color" content="#0b0f14" />
   <style>
     :root{
-      --bg:#0b0b0b;
-      --panel:rgba(255,255,255,.06);
-      --stroke:rgba(255,255,255,.10);
-      --text:#f5f5f5;
-      --muted:rgba(245,245,245,.72);
-      --gold:#d4af37;
-      --gold2:#b8932f;
-      --shadow:0 18px 55px rgba(0,0,0,.55);
-      --r:16px;
-      --r2:22px;
-      --max:1050px;
-      --ease:cubic-bezier(.2,.8,.2,1);
+      --bg:#0b0f14; --card:#111824; --muted:#9aa6b2; --text:#e8eef6;
+      --line:#1c2a3a; --good:#37d67a; --warn:#ffb020; --bad:#ff4d4f;
+      --accent:#7c5cff; --accent2:#00d4ff;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --r: 18px;
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;
-      font-family: system-ui, -apple-system, "Segoe UI", Arial, Helvetica, sans-serif;
+      margin:0; background:radial-gradient(1000px 600px at 20% 0%, rgba(124,92,255,.18), transparent 55%),
+                 radial-gradient(900px 500px at 90% 10%, rgba(0,212,255,.12), transparent 60%),
+                 var(--bg);
       color:var(--text);
-      background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(212,175,55,.18), transparent 60%),
-        radial-gradient(900px 520px at 82% 10%, rgba(212,175,55,.12), transparent 60%),
-        linear-gradient(180deg, #070707, var(--bg));
-      overflow-x:hidden;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      letter-spacing:.2px;
     }
-
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:24px 18px 96px;}
-    .topbar{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      padding:10px 12px;
-      border-radius:14px;
-      background: rgba(0,0,0,.35);
-      border:1px solid rgba(255,255,255,.08);
-      backdrop-filter: blur(10px);
-      position:sticky; top:10px; z-index:50;
+    .wrap{max-width:1100px;margin:0 auto;padding:20px}
+    header{
+      display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+      padding:10px 0 18px;border-bottom:1px solid var(--line);
     }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-weight:900;
-      font-size:12px;
-      white-space:nowrap;
-    }
+    .brand{display:flex;align-items:center;gap:12px}
     .logo{
-      width:34px;height:34px;border-radius:12px;
-      background:
-        radial-gradient(12px 12px at 30% 30%, rgba(212,175,55,.75), transparent 55%),
-        linear-gradient(145deg, rgba(212,175,55,.22), rgba(0,0,0,.2));
-      border:1px solid rgba(212,175,55,.35);
-      box-shadow: 0 10px 25px rgba(212,175,55,.10);
-      flex:0 0 auto;
-    }
-
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:10px 14px;
-      border-radius:12px;
-      text-decoration:none;
-      font-weight:950;
-      letter-spacing:.02em;
-      color:#0b0b0b;
-      background: linear-gradient(180deg, var(--gold), var(--gold2));
-      border:1px solid rgba(0,0,0,.25);
-      box-shadow: 0 14px 35px rgba(212,175,55,.16);
-      white-space:nowrap;
-    }
-
-    /* HERO */
-    .hero{
-      margin-top:16px;
-      border-radius:var(--r2);
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: 0 26px 70px rgba(0,0,0,.62);
-      background:#000;
-      position:relative;
-      min-height: 520px;
-    }
-    .hero img{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:cover;
-      transform: scale(1.03);
-      filter: contrast(1.06) brightness(.86) saturate(1.05);
-    }
-    .hero::after{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(900px 560px at 20% 25%, rgba(212,175,55,.18), transparent 60%),
-        radial-gradient(700px 520px at 85% 25%, rgba(255,255,255,.10), transparent 62%),
-        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.70));
-      pointer-events:none;
-    }
-    .hero-inner{
-      position:relative;
-      z-index:2;
-      padding:22px;
-      display:grid;
-      gap:14px;
-      align-content:end;
-      min-height: 520px;
-    }
-    .badge{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid rgba(212,175,55,.26);
-      background: rgba(212,175,55,.08);
-      color: rgba(255,255,255,.90);
-      font-weight:900;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      font-size:12px;
-      width:fit-content;
-    }
-    .badge i{
-      width:8px;height:8px;border-radius:999px;background:var(--gold);
-      box-shadow:0 0 0 6px rgba(212,175,55,.12);
-      display:inline-block;
-    }
-    h1{
-      margin:0;
-      font-size: clamp(30px, 5.6vw, 48px);
-      line-height:1.05;
-      letter-spacing:-.02em;
-    }
-    h1 strong{color:var(--gold); font-weight:1000;}
-    .lead{
-      margin:0;
-      color: rgba(245,245,245,.88);
-      font-size: 15.8px;
-      max-width: 62ch;
-    }
-    .chips{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top:4px;
-    }
-    .chip{
-      display:inline-flex; align-items:center;
-      padding:10px 12px;
-      border-radius:999px;
-      background: rgba(0,0,0,.45);
-      border:1px solid rgba(255,255,255,.14);
-      backdrop-filter: blur(10px);
-      font-weight:850;
-      font-size:13px;
-      color:rgba(255,255,255,.92);
-    }
-
-    /* SEZIONI */
-    .section{
-      margin-top:18px;
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: var(--r2);
+      width:44px;height:44px;border-radius:14px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
       box-shadow: var(--shadow);
-      padding:18px;
-      overflow:hidden;
       position:relative;
     }
-    .section::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(650px 240px at 18% 0%, rgba(212,175,55,.12), transparent 55%);
-      pointer-events:none;
+    .logo:after{
+      content:""; position:absolute; inset:10px; border-radius:10px;
+      background:rgba(11,15,20,.9);
+      border:1px solid rgba(255,255,255,.12);
     }
-    .section > *{ position:relative; }
-    .title{
-      margin:0 0 8px;
-      color:var(--gold);
-      font-size: 22px;
-      letter-spacing:-.01em;
+    .title{display:flex;flex-direction:column;line-height:1.1}
+    .title strong{font-size:18px}
+    .title span{font-size:12px;color:var(--muted)}
+    .top-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .pill{
+      display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);
+      border-radius:999px;background:rgba(255,255,255,.03)
     }
-    .text{
-      margin:0;
-      color:rgba(245,245,245,.78);
-      line-height:1.65;
-      font-size:14.8px;
+    .pill small{color:var(--muted)}
+    select, input, textarea, button{
+      font:inherit;color:var(--text);
     }
-
-    /* Cards */
+    button{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:10px 12px;border-radius:12px;
+      cursor:pointer; transition:.15s ease;
+    }
+    button:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.18)}
+    button.primary{
+      border-color:rgba(124,92,255,.55);
+      background:linear-gradient(135deg, rgba(124,92,255,.35), rgba(0,212,255,.18));
+    }
+    button.danger{border-color:rgba(255,77,79,.5); background:rgba(255,77,79,.08)}
     .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-      margin-top:12px;
+      display:grid; grid-template-columns: 360px 1fr; gap:16px; padding-top:16px;
     }
+    @media(max-width:980px){ .grid{grid-template-columns:1fr} }
     .card{
-      background: rgba(0,0,0,.22);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: var(--r);
-      padding:14px;
-    }
-    .card h3{
-      margin:0 0 6px;
-      font-size: 16px;
-      color:rgba(255,255,255,.95);
-    }
-    .card p{
-      margin:0;
-      color:rgba(245,245,245,.72);
-      font-size:14.2px;
-      line-height:1.6;
-    }
-
-    /* Galleria */
-    .gallery{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top:12px;
-    }
-    .ph{
-      border-radius: var(--r);
+      background:rgba(17,24,36,.72);
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      box-shadow: var(--shadow);
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.22);
-      position:relative;
-      min-height: 140px;
     }
-    .ph img{
-      width:100%; height:100%;
-      object-fit:cover;
-      filter: contrast(1.05) brightness(.92);
-      display:block;
+    .card h2{
+      margin:0; padding:14px 14px 10px; font-size:14px; letter-spacing:.9px; text-transform:uppercase;
+      border-bottom:1px solid var(--line);
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
     }
-    .ph .cap{
-      position:absolute; left:10px; right:10px; bottom:10px;
-      padding:8px 10px;
+    .card .body{padding:14px}
+    .muted{color:var(--muted)}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .row > * {flex:1}
+    label{display:block;font-size:12px;color:var(--muted);margin:10px 0 6px}
+    input, textarea, select{
+      width:100%;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
       border-radius:12px;
-      background: rgba(0,0,0,.50);
-      border:1px solid rgba(255,255,255,.14);
-      backdrop-filter: blur(10px);
-      font-weight:900;
-      font-size:12px;
-      color:rgba(255,255,255,.92);
+      padding:10px 12px;
+      outline:none;
     }
-
-    /* Contatti */
-    .contacts{
-      display:grid;
-      gap:10px;
-      margin-top:12px;
+    textarea{min-height:90px;resize:vertical}
+    .kpis{
+      display:grid;grid-template-columns:repeat(2,1fr);gap:10px
     }
-    .row{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      padding:12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.22);
+    .kpi{
+      padding:12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03)
     }
-    .row b{font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:rgba(245,245,245,.78);}
-    .row a{ text-decoration:none; font-weight:900; color:rgba(245,245,245,.92); }
-
-    /* CTA mobile fisso */
-    .cta-fixed{
-      position:fixed;
-      left:14px; right:14px; bottom:14px;
-      z-index:80;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
+    .kpi .v{font-size:20px;font-weight:700}
+    .kpi .l{font-size:12px;color:var(--muted);margin-top:4px}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap}
+    .tab{padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);cursor:pointer;font-size:12px}
+    .tab.active{border-color:rgba(124,92,255,.6);background:rgba(124,92,255,.12)}
+    .list{display:flex;flex-direction:column;gap:10px}
+    .item{
+      border:1px solid var(--line); border-radius:16px; padding:12px;
+      background:rgba(255,255,255,.02);
+      display:flex; gap:12px; align-items:flex-start; justify-content:space-between;
     }
-    .cta-fixed a{
-      border-radius:14px;
-      padding:14px 12px;
-      text-align:center;
-      text-decoration:none;
-      font-weight:1000;
-      letter-spacing:.02em;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.40);
-      color:rgba(255,255,255,.92);
-      backdrop-filter: blur(10px);
+    .item .left{min-width:0}
+    .item .name{font-weight:700}
+    .badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+    .badge{
+      font-size:11px;padding:4px 8px;border-radius:999px;border:1px solid var(--line);
+      color:var(--muted); background:rgba(255,255,255,.02)
     }
-    .cta-fixed a.primary{
-      background: linear-gradient(180deg, var(--gold), var(--gold2));
-      color:#0b0b0b;
-      border:1px solid rgba(0,0,0,.22);
-      box-shadow: 0 14px 35px rgba(212,175,55,.16);
+    .badge.good{border-color:rgba(55,214,122,.35); color:#bff3d4}
+    .badge.warn{border-color:rgba(255,176,32,.35); color:#ffe4b0}
+    .badge.bad{border-color:rgba(255,77,79,.35); color:#ffb9ba}
+    .item .right{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .mini{padding:8px 10px;border-radius:12px;font-size:12px}
+    .hr{height:1px;background:var(--line);margin:12px 0}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace}
+    .footer-note{font-size:12px;color:var(--muted);padding:12px 14px;border-top:1px solid var(--line)}
+    .toggle{
+      display:flex;align-items:center;gap:10px; justify-content:space-between;
+      padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02)
     }
-
-    /* Desktop */
-    @media (min-width: 900px){
-      .wrap{ padding-bottom: 40px; }
-      .hero{ min-height: 520px; }
-      .hero-inner{ min-height: 520px; padding:28px; }
-      .grid{ grid-template-columns: repeat(3, 1fr); }
-      .gallery{ grid-template-columns: repeat(4, 1fr); }
-      .cta-fixed{ display:none; }
+    .switch{position:relative;width:42px;height:24px;background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:999px;cursor:pointer}
+    .knob{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:999px;background:rgba(255,255,255,.85);transition:.15s ease}
+    .switch.on{background:rgba(124,92,255,.22);border-color:rgba(124,92,255,.55)}
+    .switch.on .knob{left:21px}
+    .hint{font-size:12px;color:var(--muted);margin-top:8px}
+    .toast{
+      position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
+      background:rgba(17,24,36,.92);border:1px solid var(--line);
+      padding:10px 12px;border-radius:999px;box-shadow:var(--shadow);
+      font-size:12px;color:var(--text);opacity:0;pointer-events:none;transition:.18s ease;
     }
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(-2px)}
   </style>
 </head>
-
 <body>
   <div class="wrap">
-    <div class="topbar">
-      <div class="brand"><span class="logo"></span> LA BOTTEGA DI PEPPE</div>
-      <a class="btn" href="#contatti">Preventivo</a>
-    </div>
-
-    <!-- HERO: usa E1.png -->
-    <div class="hero" aria-label="Hero con immagine E1">
-      <img src="E1.png" alt="Bancone bar in legno EPAL rigenerato" loading="eager" />
-      <div class="hero-inner">
-        <div class="badge"><i></i> EPAL rigenerate • Su misura • Artigianale</div>
-        <h1>Dal recupero al <strong>design premium</strong>.</h1>
-        <p class="lead">
-          Banconi bar, reception e arredi su misura in legno rigenerato.
-          Strutture solide, finiture curate, impatto estetico immediato.
-        </p>
-        <div class="chips">
-          <span class="chip">✔ Tempi chiari</span>
-          <span class="chip">✔ Finiture protette</span>
-          <span class="chip">✔ Pezzi unici</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2 class="title">Cosa realizziamo</h2>
-      <p class="text">Soluzioni funzionali e di forte impatto: pensate per locali e ambienti domestici, con lavorazione artigianale e materiali recuperati selezionati.</p>
-      <div class="grid">
-        <div class="card">
-          <h3>Banconi Bar</h3>
-          <p>Progettati per uso reale: vani, retrobanco, mensole e dettagli su misura.</p>
-        </div>
-        <div class="card">
-          <h3>Arredi su Misura</h3>
-          <p>Reception, desk, tavoli e complementi con stile pulito e finiture premium.</p>
-        </div>
-        <div class="card">
-          <h3>Rivestimenti</h3>
-          <p>Pareti e superfici decorative per un look caldo, industrial e distintivo.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2 class="title">Perché è diverso</h2>
-      <p class="text">Non è “pallet style” improvvisato: è una lavorazione pensata per durare, con proporzioni corrette, struttura solida e protezioni per uso intensivo.</p>
-      <div class="grid">
-        <div class="card"><h3>Strutture solide</h3><p>Rinforzi dove serve, niente giochi, stabilità vera.</p></div>
-        <div class="card"><h3>Finitura protettiva</h3><p>Trattamenti per resistenza e manutenzione semplice.</p></div>
-        <div class="card"><h3>Effetto “wow”</h3><p>Venature, carattere e design pulito: premium dal vivo e in foto.</p></div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2 class="title">Galleria</h2>
-      <p class="text">Carica le immagini nella stessa cartella di questo file con questi nomi: <b>G1.jpg</b>, <b>G2.jpg</b>, <b>G3.jpg</b>, <b>G4.jpg</b>.</p>
-      <div class="gallery">
-        <div class="ph">
-          <img src="G1.jpg" alt="Lavoro 1" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.background='rgba(0,0,0,.22)';" />
-          <div class="cap">Bancone bar</div>
-        </div>
-        <div class="ph">
-          <img src="G2.jpg" alt="Lavoro 2" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.background='rgba(0,0,0,.22)';" />
-          <div class="cap">Dettagli</div>
-        </div>
-        <div class="ph">
-          <img src="G3.jpg" alt="Lavoro 3" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.background='rgba(0,0,0,.22)';" />
-          <div class="cap">Reception</div>
-        </div>
-        <div class="ph">
-          <img src="G4.jpg" alt="Lavoro 4" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.background='rgba(0,0,0,.22)';" />
-          <div class="cap">Rivestimenti</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section" id="contatti">
-      <h2 class="title">Contatti</h2>
-      <p class="text">Raccontaci cosa ti serve (misure, stile, destinazione). Risposta rapida con proposta e preventivo.</p>
-
-      <div class="contacts">
-        <div class="row">
-          <b>Email</b>
-          <a href="mailto:info@labottegadippe.it">info@labottegadippe.it</a>
-        </div>
-        <div class="row">
-          <b>WhatsApp</b>
-          <a href="https://wa.me/390000000000">+39 000 0000000</a>
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="title">
+          <strong>Latency Human</strong>
+          <span>v0.1 — misura e riduci la latenza tra segnale → azione</span>
         </div>
       </div>
 
-      <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-        <a class="btn" href="mailto:info@labottegadippe.it?subject=Richiesta%20Preventivo%20%E2%80%94%20La%20Bottega%20di%20Peppe">Scrivi via Email</a>
-        <a class="btn" style="background:rgba(255,255,255,.08); color:var(--text); border:1px solid rgba(255,255,255,.12); box-shadow:none;"
-           href="https://wa.me/390000000000">Apri WhatsApp</a>
+      <div class="top-actions">
+        <div class="pill">
+          <small>Modalità</small>
+          <select id="modeSel" aria-label="Modalità">
+            <option value="NORMAL">NORMAL</option>
+            <option value="DEGRADED">DEGRADED</option>
+            <option value="FAILSAFE">FAILSAFE</option>
+          </select>
+        </div>
+        <button class="mini" id="exportBtn">Esporta JSON</button>
+        <button class="mini danger" id="wipeBtn">Reset dati</button>
       </div>
-    </div>
+    </header>
 
-    <div style="margin-top:14px; text-align:center; color:rgba(245,245,245,.55); font-size:12.5px;">
-      © 2026 La Bottega di Peppe — Arredi in Legno • EPAL rigenerate • Artigianato italiano
+    <div class="grid">
+      <!-- LEFT: Create + KPIs + Rules -->
+      <section class="card">
+        <h2>
+          <span>Nuovo Segnale</span>
+          <span class="muted mono" id="todayStr"></span>
+        </h2>
+        <div class="body">
+          <label>Titolo segnale (frizione / dubbio / errore)</label>
+          <input id="sigTitle" placeholder="Es: Sto rimandando una decisione importante" />
+
+          <label>Tipo</label>
+          <select id="sigType">
+            <option value="FRIZIONE">Frizione</option>
+            <option value="DUBBIO">Dubbio ricorrente</option>
+            <option value="ERRORE">Errore ripetuto</option>
+            <option value="RISCHIO">Rischio</option>
+            <option value="OPPORTUNITA">Opportunità</option>
+          </select>
+
+          <label>Impatto (quanto costa se decidi tardi?)</label>
+          <select id="sigImpact">
+            <option value="BASSO">Basso</option>
+            <option value="MEDIO" selected>Medio</option>
+            <option value="ALTO">Alto</option>
+            <option value="CRITICO">Critico</option>
+          </select>
+
+          <label>Note (cosa lo rende “segnale”?)</label>
+          <textarea id="sigNotes" placeholder="Scrivi cosa succede e perché ti sta tornando in mente..."></textarea>
+
+          <div class="row" style="margin-top:12px">
+            <button class="primary" id="addBtn">Aggiungi Segnale</button>
+            <button id="demoBtn">Crea esempio</button>
+          </div>
+
+          <div class="hr"></div>
+
+          <h3 style="margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.9px;color:var(--muted)">KPI</h3>
+          <div class="kpis">
+            <div class="kpi">
+              <div class="v" id="kOpen">0</div>
+              <div class="l">Segnali aperti</div>
+            </div>
+            <div class="kpi">
+              <div class="v" id="kDone">0</div>
+              <div class="l">Completati</div>
+            </div>
+            <div class="kpi">
+              <div class="v" id="kAvg">—</div>
+              <div class="l">Latenza media (T0→T3)</div>
+            </div>
+            <div class="kpi">
+              <div class="v" id="kToday">0</div>
+              <div class="l">Decisioni oggi</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <h3 style="margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.9px;color:var(--muted)">Regole per modalità</h3>
+
+          <div class="toggle">
+            <div>
+              <div style="font-weight:700">Limita a 1 decisione/giorno</div>
+              <div class="hint">Attivo in DEGRADED/FAILSAFE. In NORMAL puoi disattivare.</div>
+            </div>
+            <div class="switch" id="limitSwitch" role="switch" aria-checked="false" tabindex="0">
+              <div class="knob"></div>
+            </div>
+          </div>
+
+          <div class="toggle" style="margin-top:10px">
+            <div>
+              <div style="font-weight:700">Azioni entro 72h</div>
+              <div class="hint">Se prendi una decisione, devi fare un’azione minima entro 72h.</div>
+            </div>
+            <div class="switch on" id="slaSwitch" role="switch" aria-checked="true" tabindex="0">
+              <div class="knob"></div>
+            </div>
+          </div>
+
+          <div class="footer-note">
+            <span class="mono">T0</span> creato → <span class="mono">T1</span> riconosciuto → <span class="mono">T2</span> decisione → <span class="mono">T3</span> azione completata
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: List + Detail -->
+      <section class="card">
+        <h2>
+          <span>Segnali</span>
+          <span class="tabs" id="tabs">
+            <div class="tab active" data-tab="OPEN">Aperti</div>
+            <div class="tab" data-tab="DONE">Completati</div>
+            <div class="tab" data-tab="ALL">Tutti</div>
+          </span>
+        </h2>
+        <div class="body">
+          <div class="row">
+            <input id="search" placeholder="Cerca..." />
+            <select id="sortSel">
+              <option value="NEW">Più recenti</option>
+              <option value="IMPACT">Impatto</option>
+              <option value="LATENCY">Latenza (alta)</option>
+            </select>
+          </div>
+
+          <div class="hr"></div>
+          <div class="list" id="list"></div>
+        </div>
+      </section>
     </div>
   </div>
 
-  <!-- CTA mobile fisso (sempre visibile) -->
-  <div class="cta-fixed" aria-label="Azioni rapide">
-    <a class="primary" href="https://wa.me/390000000000">WhatsApp</a>
-    <a href="mailto:info@labottegadippe.it?subject=Richiesta%20Preventivo%20%E2%80%94%20La%20Bottega%20di%20Peppe">Email</a>
-  </div>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ====== Storage ======
+    const LS_KEY = "latency_human_v01";
+    const LS_PREF = "latency_human_prefs_v01";
+
+    const impactRank = { BASSO: 1, MEDIO: 2, ALTO: 3, CRITICO: 4 };
+
+    const state = {
+      items: [],
+      tab: "OPEN",
+      mode: "NORMAL",
+      prefs: { limitPerDay: false, sla72h: true }
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    function load() {
+      const raw = localStorage.getItem(LS_KEY);
+      const pref = localStorage.getItem(LS_PREF);
+      state.items = raw ? JSON.parse(raw) : [];
+      state.prefs = pref ? JSON.parse(pref) : state.prefs;
+      // infer mode from select default if present
+    }
+
+    function save() {
+      localStorage.setItem(LS_KEY, JSON.stringify(state.items));
+      localStorage.setItem(LS_PREF, JSON.stringify(state.prefs));
+    }
+
+    function uid() {
+      return Math.random().toString(16).slice(2) + "-" + Date.now().toString(16);
+    }
+
+    function nowISO() { return new Date().toISOString(); }
+
+    function dayKey(d = new Date()) {
+      // local day key (YYYY-MM-DD)
+      const y = d.getFullYear();
+      const m = String(d.getMonth()+1).padStart(2,"0");
+      const dd = String(d.getDate()).padStart(2,"0");
+      return `${y}-${m}-${dd}`;
+    }
+
+    function fmtDate(iso) {
+      if (!iso) return "—";
+      const d = new Date(iso);
+      return d.toLocaleString("it-IT", { year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit" });
+    }
+
+    function msToHuman(ms) {
+      if (ms == null || !isFinite(ms)) return "—";
+      const s = Math.floor(ms/1000);
+      const min = Math.floor(s/60);
+      const h = Math.floor(min/60);
+      const d = Math.floor(h/24);
+      const hh = h % 24;
+      const mm = min % 60;
+      if (d > 0) return `${d}g ${hh}h`;
+      if (h > 0) return `${h}h ${mm}m`;
+      if (min > 0) return `${min}m`;
+      return `${s}s`;
+    }
+
+    function toast(msg) {
+      const t = $("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(()=>t.classList.remove("show"), 1400);
+    }
+
+    // ====== Core Logic ======
+    function createSignal({title,type,impact,notes}) {
+      const item = {
+        id: uid(),
+        title: title.trim(),
+        type,
+        impact,
+        notes: notes.trim(),
+        t0: nowISO(),
+        t1: null,
+        t2: null,
+        t3: null,
+        decision: null,  // {binary, text}
+        action: null,    // {text}
+        status: "OPEN",
+        log: [{ at: nowISO(), event: "CREATED" }]
+      };
+      state.items.unshift(item);
+      save();
+      render();
+      toast("Segnale creato (T0)");
+    }
+
+    function getLatencies(item) {
+      const t0 = item.t0 ? new Date(item.t0).getTime() : null;
+      const t1 = item.t1 ? new Date(item.t1).getTime() : null;
+      const t2 = item.t2 ? new Date(item.t2).getTime() : null;
+      const t3 = item.t3 ? new Date(item.t3).getTime() : null;
+      return {
+        t0t1: (t0!=null && t1!=null) ? (t1-t0) : null,
+        t1t2: (t1!=null && t2!=null) ? (t2-t1) : null,
+        t2t3: (t2!=null && t3!=null) ? (t3-t2) : null,
+        t0t3: (t0!=null && t3!=null) ? (t3-t0) : null
+      };
+    }
+
+    function decisionsTodayCount() {
+      const key = dayKey();
+      return state.items.reduce((acc,it)=>{
+        if (!it.t2) return acc;
+        const d = new Date(it.t2);
+        return (dayKey(d) === key) ? acc + 1 : acc;
+      },0);
+    }
+
+    function canDecideToday() {
+      if (!state.prefs.limitPerDay) return true;
+      if (state.mode === "NORMAL") return true; // allow override in normal unless prefs says otherwise (still true)
+      return decisionsTodayCount() < 1;
+    }
+
+    function mark(itemId, stage, payload = {}) {
+      const it = state.items.find(x=>x.id===itemId);
+      if (!it) return;
+
+      if (stage === "T1") {
+        if (!it.t1) {
+          it.t1 = nowISO();
+          it.log.push({ at: nowISO(), event: "RECOGNIZED" });
+          toast("Riconosciuto (T1)");
+        }
+      }
+
+      if (stage === "T2") {
+        if (!canDecideToday()) {
+          toast("Limite: 1 decisione oggi (DEGRADED/FAILSAFE)");
+          return;
+        }
+        if (!it.t1) {
+          // auto-recognize
+          it.t1 = nowISO();
+          it.log.push({ at: nowISO(), event: "AUTO_RECOGNIZED" });
+        }
+        it.t2 = nowISO();
+        it.decision = payload.decision || null;
+        it.log.push({ at: nowISO(), event: "DECIDED", meta: it.decision });
+        toast("Decisione (T2)");
+      }
+
+      if (stage === "T3") {
+        if (!it.t2) {
+          toast("Prima serve una decisione (T2)");
+          return;
+        }
+        it.t3 = nowISO();
+        it.action = payload.action || null;
+        it.status = "DONE";
+        it.log.push({ at: nowISO(), event: "ACTION_DONE", meta: it.action });
+        toast("Azione completata (T3)");
+      }
+
+      save();
+      render();
+    }
+
+    function reopen(itemId) {
+      const it = state.items.find(x=>x.id===itemId);
+      if (!it) return;
+      it.status = "OPEN";
+      it.t3 = null;
+      it.log.push({ at: nowISO(), event: "REOPENED" });
+      save(); render(); toast("Riaperto");
+    }
+
+    function remove(itemId) {
+      state.items = state.items.filter(x=>x.id!==itemId);
+      save(); render(); toast("Eliminato");
+    }
+
+    // ====== Render ======
+    function badgeForImpact(impact) {
+      if (impact === "CRITICO") return `<span class="badge bad">CRITICO</span>`;
+      if (impact === "ALTO") return `<span class="badge warn">ALTO</span>`;
+      if (impact === "MEDIO") return `<span class="badge">MEDIO</span>`;
+      return `<span class="badge">BASSO</span>`;
+    }
+
+    function statusBadge(it) {
+      const l = getLatencies(it);
+      const total = l.t0t3;
+      if (it.status === "DONE") return `<span class="badge good">DONE • ${msToHuman(total)}</span>`;
+      // pending, show "latenza finora"
+      const t0 = new Date(it.t0).getTime();
+      const ms = Date.now() - t0;
+      const cls = ms > 72*3600*1000 ? "bad" : (ms > 24*3600*1000 ? "warn" : "");
+      const label = ms > 72*3600*1000 ? "RITARDO" : (ms > 24*3600*1000 ? "ATTENZIONE" : "IN CORSO");
+      return `<span class="badge ${cls}">${label} • ${msToHuman(ms)}</span>`;
+    }
+
+    function modeRulesApply() {
+      // enforce prefs defaults based on mode, without being annoying
+      if (state.mode === "FAILSAFE") {
+        state.prefs.limitPerDay = true;
+        state.prefs.sla72h = true;
+      } else if (state.mode === "DEGRADED") {
+        state.prefs.limitPerDay = true;
+        // keep sla preference as is
+      }
+      save();
+      syncSwitchUI();
+    }
+
+    function renderKPIs() {
+      const open = state.items.filter(i=>i.status==="OPEN").length;
+      const done = state.items.filter(i=>i.status==="DONE").length;
+      const doneLat = state.items
+        .filter(i=>i.status==="DONE")
+        .map(i=>getLatencies(i).t0t3)
+        .filter(ms=>ms!=null);
+
+      const avg = doneLat.length ? Math.round(doneLat.reduce((a,b)=>a+b,0)/doneLat.length) : null;
+
+      $("kOpen").textContent = open;
+      $("kDone").textContent = done;
+      $("kAvg").textContent = avg ? msToHuman(avg) : "—";
+      $("kToday").textContent = decisionsTodayCount();
+    }
+
+    function getFilteredItems() {
+      const q = $("search").value.trim().toLowerCase();
+      let items = [...state.items];
+
+      if (state.tab === "OPEN") items = items.filter(i=>i.status==="OPEN");
+      if (state.tab === "DONE") items = items.filter(i=>i.status==="DONE");
+
+      if (q) {
+        items = items.filter(i =>
+          (i.title||"").toLowerCase().includes(q) ||
+          (i.notes||"").toLowerCase().includes(q) ||
+          (i.type||"").toLowerCase().includes(q) ||
+          (i.impact||"").toLowerCase().includes(q)
+        );
+      }
+
+      const sort = $("sortSel").value;
+      if (sort === "NEW") {
+        // already newest first because unshift; keep stable
+      } else if (sort === "IMPACT") {
+        items.sort((a,b)=>impactRank[b.impact]-impactRank[a.impact]);
+      } else if (sort === "LATENCY") {
+        items.sort((a,b)=>{
+          const la = getLatencies(a).t0t3 ?? (Date.now()-new Date(a.t0).getTime());
+          const lb = getLatencies(b).t0t3 ?? (Date.now()-new Date(b.t0).getTime());
+          return lb-la;
+        });
+      }
+      return items;
+    }
+
+    function renderList() {
+      const list = $("list");
+      const items = getFilteredItems();
+
+      if (!items.length) {
+        list.innerHTML = `<div class="muted">Nessun segnale qui. Crea il primo a sinistra.</div>`;
+        return;
+      }
+
+      list.innerHTML = items.map(it=>{
+        const l = getLatencies(it);
+        const t0 = fmtDate(it.t0);
+        const t1 = fmtDate(it.t1);
+        const t2 = fmtDate(it.t2);
+        const t3 = fmtDate(it.t3);
+
+        const decisionText = it.decision ? `${it.decision.binary} — ${it.decision.text||""}`.trim() : "—";
+        const actionText = it.action ? (it.action.text||"—") : "—";
+
+        const canDecide = canDecideToday() || !!it.t2;
+
+        return `
+          <div class="item">
+            <div class="left">
+              <div class="name">${escapeHtml(it.title)}</div>
+              <div class="badges">
+                <span class="badge">${escapeHtml(it.type)}</span>
+                ${badgeForImpact(it.impact)}
+                ${statusBadge(it)}
+              </div>
+
+              <div class="hint" style="margin-top:10px">
+                <span class="mono">T0</span> ${t0} •
+                <span class="mono">T1</span> ${t1} •
+                <span class="mono">T2</span> ${t2} •
+                <span class="mono">T3</span> ${t3}
+              </div>
+
+              <div class="hint">
+                <span class="mono">Latenze:</span>
+                T0→T1 <b>${msToHuman(l.t0t1)}</b>,
+                T1→T2 <b>${msToHuman(l.t1t2)}</b>,
+                T2→T3 <b>${msToHuman(l.t2t3)}</b>,
+                Totale <b>${msToHuman(l.t0t3)}</b>
+              </div>
+
+              <div class="hr"></div>
+              <div class="hint"><b>Decisione:</b> ${escapeHtml(decisionText)}</div>
+              <div class="hint"><b>Azione:</b> ${escapeHtml(actionText)}</div>
+              ${it.notes ? `<div class="hint"><b>Note:</b> ${escapeHtml(it.notes)}</div>` : ``}
+            </div>
+
+            <div class="right">
+              ${!it.t1 ? `<button class="mini" data-act="t1" data-id="${it.id}">Riconosci (T1)</button>` : ``}
+              ${it.status==="OPEN" ? `
+                <button class="mini primary" data-act="t2" data-id="${it.id}" ${canDecide?``:`title="Limite decisioni oggi" disabled`} >
+                  Decidi (T2)
+                </button>
+                <button class="mini" data-act="t3" data-id="${it.id}">Azione (T3)</button>
+              ` : `
+                <button class="mini" data-act="reopen" data-id="${it.id}">Riapri</button>
+              `}
+              <button class="mini danger" data-act="del" data-id="${it.id}">Elimina</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      // bind
+      list.querySelectorAll("button[data-act]").forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          const act = btn.getAttribute("data-act");
+          const id = btn.getAttribute("data-id");
+          if (act === "t1") return mark(id, "T1");
+          if (act === "t2") return openDecisionDialog(id);
+          if (act === "t3") return openActionDialog(id);
+          if (act === "reopen") return reopen(id);
+          if (act === "del") {
+            if (confirm("Eliminare questo segnale?")) remove(id);
+          }
+        });
+      });
+    }
+
+    function render() {
+      renderKPIs();
+      renderList();
+      // UI title date
+      $("todayStr").textContent = dayKey();
+    }
+
+    // ====== dialogs (simple prompt) ======
+    function openDecisionDialog(id) {
+      const it = state.items.find(x=>x.id===id);
+      if (!it) return;
+
+      // FAILSAFE forces binary options (strict)
+      const binary = prompt("Decisione binaria (es: SI/NO oppure ORA/DOPO):", it.decision?.binary || "SI/NO");
+      if (binary == null) return;
+
+      const text = prompt("Testo decisione (1 riga, no spiegoni):", it.decision?.text || "");
+      if (text == null) return;
+
+      mark(id, "T2", { decision: { binary: binary.trim().toUpperCase(), text: (text||"").trim() } });
+    }
+
+    function openActionDialog(id) {
+      const it = state.items.find(x=>x.id===id);
+      if (!it) return;
+
+      // SLA enforcement: if enabled, warn if >72h since T2
+      if (state.prefs.sla72h && it.t2) {
+        const ms = Date.now() - new Date(it.t2).getTime();
+        if (ms > 72*3600*1000) {
+          if (!confirm("Sei oltre 72h dalla decisione. Vuoi segnare comunque l'azione completata?")) return;
+        }
+      }
+
+      const text = prompt("Azione completata (cosa hai fatto, concreto):", it.action?.text || "");
+      if (text == null) return;
+
+      mark(id, "T3", { action: { text: text.trim() } });
+    }
+
+    // ====== UI: tabs, mode, switches ======
+    function setTab(tab) {
+      state.tab = tab;
+      document.querySelectorAll(".tab").forEach(t=>{
+        t.classList.toggle("active", t.getAttribute("data-tab") === tab);
+      });
+      renderList();
+    }
+
+    function syncSwitchUI() {
+      const lim = $("limitSwitch");
+      lim.classList.toggle("on", !!state.prefs.limitPerDay);
+      lim.setAttribute("aria-checked", String(!!state.prefs.limitPerDay));
+
+      const sla = $("slaSwitch");
+      sla.classList.toggle("on", !!state.prefs.sla72h);
+      sla.setAttribute("aria-checked", String(!!state.prefs.sla72h));
+    }
+
+    function toggleSwitch(which) {
+      if (which === "limit") {
+        // in FAILSAFE it's forced ON
+        if (state.mode === "FAILSAFE") { toast("FAILSAFE: limite obbligatorio"); return; }
+        state.prefs.limitPerDay = !state.prefs.limitPerDay;
+        save(); syncSwitchUI(); toast("Preferenza salvata");
+      }
+      if (which === "sla") {
+        state.prefs.sla72h = !state.prefs.sla72h;
+        save(); syncSwitchUI(); toast("Preferenza salvata");
+      }
+    }
+
+    // ====== export / wipe ======
+    function exportJSON() {
+      const payload = {
+        meta: { app:"Latency Human v0.1", exportedAt: nowISO(), mode: state.mode, prefs: state.prefs },
+        items: state.items
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `latency-human-export-${dayKey()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url), 1000);
+      toast("Esportato");
+    }
+
+    function wipeAll() {
+      if (!confirm("Reset totale? Cancella tutti i segnali.")) return;
+      localStorage.removeItem(LS_KEY);
+      localStorage.removeItem(LS_PREF);
+      state.items = [];
+      state.prefs = { limitPerDay: false, sla72h: true };
+      state.mode = "NORMAL";
+      $("modeSel").value = "NORMAL";
+      save(); syncSwitchUI(); render();
+      toast("Reset completato");
+    }
+
+    // ====== helpers ======
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    // ====== init ======
+    load();
+
+    // set initial mode from select
+    $("modeSel").addEventListener("change", ()=>{
+      state.mode = $("modeSel").value;
+      modeRulesApply();
+      toast("Modalità: " + state.mode);
+    });
+    state.mode = $("modeSel").value;
+
+    // apply mode rules immediately
+    modeRulesApply();
+
+    // switches
+    $("limitSwitch").addEventListener("click", ()=>toggleSwitch("limit"));
+    $("slaSwitch").addEventListener("click", ()=>toggleSwitch("sla"));
+    $("limitSwitch").addEventListener("keydown", (e)=>{ if (e.key==="Enter"||e.key===" ") toggleSwitch("limit"); });
+    $("slaSwitch").addEventListener("keydown", (e)=>{ if (e.key==="Enter"||e.key===" ") toggleSwitch("sla"); });
+
+    syncSwitchUI();
+
+    // tabs
+    $("tabs").addEventListener("click", (e)=>{
+      const t = e.target.closest(".tab");
+      if (!t) return;
+      setTab(t.getAttribute("data-tab"));
+    });
+
+    // add signal
+    $("addBtn").addEventListener("click", ()=>{
+      const title = $("sigTitle").value;
+      const notes = $("sigNotes").value;
+      if (!title.trim()) { toast("Inserisci un titolo"); return; }
+
+      createSignal({
+        title,
+        type: $("sigType").value,
+        impact: $("sigImpact").value,
+        notes
+      });
+
+      $("sigTitle").value = "";
+      $("sigNotes").value = "";
+      $("sigType").value = "FRIZIONE";
+      $("sigImpact").value = "MEDIO";
+    });
+
+    // demo
+    $("demoBtn").addEventListener("click", ()=>{
+      createSignal({
+        title: "Sto rimandando una decisione importante",
+        type: "DUBBIO",
+        impact: "ALTO",
+        notes: "Mi torna in mente ogni giorno. Sto perdendo tempo e lucidità. Devo decidere: ORA o MAI."
+      });
+    });
+
+    // search/sort
+    $("search").addEventListener("input", renderList);
+    $("sortSel").addEventListener("change", renderList);
+
+    // export/wipe
+    $("exportBtn").addEventListener("click", exportJSON);
+    $("wipeBtn").addEventListener("click", wipeAll);
+
+    // initial render
+    render();
+  </script>
 </body>
 </html>
